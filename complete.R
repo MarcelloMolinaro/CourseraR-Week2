@@ -1,7 +1,7 @@
 complete <- function(directory, id = 1:332) {
         names <- c("ID", "nobs")
-        my_frame <- data.frame(0, 0)
-        colnames(my_frame) <-(names)
+        my_frame <- data.frame(ID = integer(), 
+                               nobs = integer())
         for(i in id) {
                 #count complete cases
                 if(i < 10) {
@@ -12,7 +12,8 @@ complete <- function(directory, id = 1:332) {
                         x <- paste(i)
                 my_frame <- rbind(c(i, getfileAll(directory, x)), my_frame)
         }
-        my_frame
+        colnames(my_frame) <-(names)
+        my_frame[order(my_frame$ID),]
 }
 
 getfileAll <- function(directory, number) {
